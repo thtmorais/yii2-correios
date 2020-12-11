@@ -84,12 +84,13 @@ class CepInput extends InputWidget
         echo Html::beginTag("div", ['class' => 'input-group cep-search', 'id' => $id]);
         echo $input;
         echo Html::beginTag("span", ['class' => 'input-group-btn']);
-        echo Html::beginTag("a", ['class' => 'btn btn-default']);
+        echo Html::beginTag("a", ['class' => 'btn btn-light border border-secondary rounded-0']);
         echo Html::tag("i", null, ['class' => $this->searchIcon]);
         echo Html::endTag("a");
         echo Html::endTag("span");
         echo Html::endTag("div");
     }
+
 
     /**
      * Renders a modal window
@@ -100,28 +101,28 @@ class CepInput extends InputWidget
         echo Html::beginTag('div', ['class' => 'modal-dialog modal-lg']);
         echo Html::beginTag('div', ['class' => 'modal-content']);
 
-        echo Html::beginTag('div', ['class' => 'modal-header']);
+        echo Html::beginTag('div', ['class' => 'modal-header d-flex justify-content-around']);
+        echo "<span>CEP</span>";
         echo Html::button('&times;', ['class' => 'close', 'data-dismiss' => 'modal', 'aria-hidden' => true]);
-        echo "CEP";
         echo Html::endTag('div');
 
         echo Html::beginTag('div', ['class' => 'modal-body']);
-        echo Html::label('Endereço');
 
-        $input = Html::textInput(null, null, ['class' => ArrayHelper::getValue($this->options, 'class')]);
+        $input = Html::textInput(null, null, ['class' => ArrayHelper::getValue($this->options, 'class').' rounded-0','placeholder' => \Yii::t('app','Public place or ZIP code')]);
         $this->renderSearch($input);
         $this->renderGrid();
 
         echo Html::endTag('div');
 
         echo Html::beginTag('div', ['class' => 'modal-footer']);
-        echo Html::button('Fechar', ['class' => 'btn btn-default', 'data-dismiss' => 'modal', 'aria-hidden' => true]);
+        echo Html::button(\Yii::t('app','Cancel'), ['class' => 'btn btn-danger text-uppercase', 'data-dismiss' => 'modal', 'aria-hidden' => true]);
         echo Html::endTag('div');
 
         echo Html::endTag('div');
         echo Html::endTag('div');
         echo Html::endTag('div');
     }
+
 
     /**
      * Renders address grid
